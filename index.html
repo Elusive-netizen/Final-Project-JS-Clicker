@@ -11,9 +11,11 @@
     <section>
         <div class="main">
             <div class="left">
-                <h3>Ore: <br><span class="ore-cost ore-text">0</span> </h3>
-                <div class="asteroid-img-container">
-                    <img src="./assets/0.png" class="asteroid-img" id="asteroid" alt="" srcset="" onclick="incrementOre(event)" draggable="false">
+                <div class="oretextalign">
+                    <h3>Ore: <br><span class="ore-cost ore-text">0</span> </h3>
+                    <div class="asteroid-img-container">
+                        <img src="./assets/0.png" class="asteroid-img clickable-circle" id="asteroid" alt="" srcset="" onclick="incrementOre(event)" draggable="false">
+                    </div>
                 </div>
                 <progress class="healthbar" value="50" max="100"></progress>
                 <p id="hp-text">HP: 0 / 0</p>

@@ -79,6 +79,8 @@ function createBackgroundAsteroid() {
     const bgasteroid = document.createElement("img");
     bgasteroid.src = asteroidImages[Math.floor(Math.random() * asteroidImages.length)];
     bgasteroid.classList.add("bgasteroid");
+    bgasteroid.setAttribute("onclick", "drillBgAsteroid(this, event)");
+    bgasteroid.draggable = false;
 
     const minY = 50;
     const maxY = 800;

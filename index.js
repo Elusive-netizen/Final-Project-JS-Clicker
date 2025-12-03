@@ -34,9 +34,9 @@ bgm.volume = 0.2
 
 function incrementOre(event) {
     if (!isMuted){
-    const clickSound = new Audio('./assets/audio/click.mp3')
-    clickSound.volume = 0.5
-    clickSound.play();
+        const clickSound = new Audio('./assets/audio/click.mp3')
+        clickSound.volume = 0.5
+        clickSound.play();
     }
     ore.innerHTML =  Math.round(parsedOre += opc);
 
@@ -47,10 +47,12 @@ function incrementOre(event) {
     div.innerHTML = `+${Math.round(opc)}` 
     div.style.cssText = `
             color: white; 
-            position: absolute; top: 
-            ${y}px; left: ${x}px; 
+            position: absolute; 
+            top: ${y}px; 
+            left: ${x}px; 
             font-size: 15px; 
             pointer-events: none;
+            z-index: 3;
         `
     asteroidImgContainer.appendChild(div)
 
@@ -75,6 +77,36 @@ function incrementOre(event) {
         }, 2000)
     }
 }
+function drillBgAsteroid(bgast, event) {
+    if (!isMuted){
+        const clickSound = new Audio('./assets/audio/prize.mp3')
+        clickSound.volume = 0.5
+        clickSound.play();
+    }
+    ore.innerHTML =  Math.round(parsedOre = parsedOre + opc * 2);
+    
+    const x = event.pageX+10;
+    const y = event.pageY-10;
+
+    const div = document.createElement('div')
+    div.innerHTML = `+${Math.round(opc * 2)}` 
+    div.style.cssText = `
+            color: gold; 
+            position: absolute; 
+            top: ${y}px; 
+            left: ${x}px; 
+            font-size: 25px; 
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 3;
+        `
+    document.body.appendChild(div);
+
+    div.classList.add('fade-up');
+
+    timeout(div);
+    bgast.remove();
+}
 
 const timeout = (div) => {
     setTimeout( () => {
@@ -95,6 +127,7 @@ export function destructionEffect() {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            z-index: 3;
         `;
     asteroidImgContainer.appendChild(bigDiv);
     bigDiv.classList.add('fade-up');
@@ -326,6 +359,7 @@ setInterval(() => {
 
 window.closeUpgrades = closeUpgrades
 window.incrementOre = incrementOre
+window.drillBgAsteroid = drillBgAsteroid
 window.buyUpgrade = buyUpgrade
 window.soundToggle = soundToggle
 window.save = save
