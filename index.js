@@ -1,9 +1,20 @@
-import { powerUpIntervals, upgrades } from "./consts/upgrades.js";
-import { spawnAsteroid, destroyAsteroid, asteroid, updateAsteroidUI} from "./consts/asteroids.js";
+import { powerUpIntervals, upgrades } from "./func/upgrades.js";
+import { spawnAsteroid, destroyAsteroid, asteroid, updateAsteroidUI} from "./func/asteroids.js";
 export let isMuted = false;
 
 window.onload = () => {
     spawnAsteroid();
+    let sidebarOpacity = document.querySelector('.sidebar');
+    setTimeout(() => {
+            sidebarOpacity.classList.remove("unclickable");
+            sidebarOpacity.style.opacity = "1";
+            sidebarOpacity.style.animation = "fade-in 2s";
+        }, 3000)
+    setTimeout(() => {
+            sidebarOpacity.style.animation = "";
+        }, 5100)
+
+   
 };
 
 let ore = document.querySelector('.ore-cost');
@@ -50,6 +61,7 @@ function incrementOre(event) {
     asteroid.hp -= opc;
     updateAsteroidUI();
     if (asteroid.hp <= 0 && !asteroidCooldown) {
+       
         if (!isMuted) {
             const prizeSound = new Audio('./assets/audio/prize.mp3')
             prizeSound.volume = 0.5
@@ -185,14 +197,12 @@ function buyUpgrade(upgrade) {
         upgradeDeny.play()
     } 
 
-    console.log(mu.savedCost, mu.parsedCost, mu.cost)
 }
 
 function closeUpgrades() {
     const sidebar = document.querySelector(".sidebar");
     const arrow = document.querySelector(".open-arrow");
 
-    console.log(sidebar.style.display)
    if (sidebar.style.display == "none") {
         sidebar.style.display = "block"
         arrow.style.display = "none"
@@ -203,7 +213,6 @@ function closeUpgrades() {
         
         
    }
-   console.log(closeUpgrades)
 }
 
 function soundToggle() {
@@ -231,10 +240,7 @@ function save() {
             parsedIncrease: upgrade.parsedIncrease
         })
 
-        console.log(upgrade.name, savedObj)
-
         localStorage.setItem(upgrade.name, savedObj)
-
 
     })
     localStorage.setItem('opc', JSON.stringify(opc))

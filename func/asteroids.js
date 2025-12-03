@@ -10,7 +10,7 @@ const asteroidImages = [
 
 export let asteroid = {
     maxHp: 15,
-    hp: 0,
+    hp: 15,
     prize: 150,
     hpMultiplier: 1.5,
     prizeMultiplier: 1.35,

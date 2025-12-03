@@ -3,12 +3,12 @@ const defaultValues = [
     {name: 'drone', image: './assets/upgrades/drone.png', cost: 100, increase: 1, state: 'per second'},
     {name: 'excavator', image: './assets/upgrades/excavator.png', cost: 500, increase: 2, state: 'per second'},
     {name: 'station', image: './assets/upgrades/station.png', cost: 2000, increase: 4, state: 'per second'},
-    {name: 'laser-core', image: './assets/upgrades/blank.png', cost: 10000, increase: 10, state: 'per second'},
-    {name: 'nano-swarm', image: './assets/upgrades/blank.png', cost: 45000, increase: 20, state: 'per second'},
-    {name: 'graviton', image: './assets/upgrades/blank.png', cost: 120000, increase: 50, state: 'per second'},
-    {name: 'dyson-ring', image: './assets/upgrades/blank.png', cost: 375000, increase: 100, state: 'per second'},
-    {name: 'void-extractor', image: './assets/upgrades/blank.png', cost: 999999, increase: 200, state: 'per second'},
-    {name: 'multiverse', image: './assets/upgrades/blank.png', cost: 4237271, increase: 314, state: 'per second'},
+    {name: 'laser-core', image: './assets/upgrades/laser-core.png', cost: 10000, increase: 10, state: 'per second'},
+    {name: 'nano-swarm', image: './assets/upgrades/nano-swarm.png', cost: 45000, increase: 20, state: 'per second'},
+    {name: 'graviton', image: './assets/upgrades/graviton.png', cost: 120000, increase: 50, state: 'per second'},
+    {name: 'dyson-sphere', image: './assets/upgrades/dyson-sphere.png', cost: 375000, increase: 100, state: 'per second'},
+    {name: 'void-extractor', image: './assets/upgrades/void-extractor.png', cost: 999999, increase: 200, state: 'per second'},
+    {name: 'multiverse', image: './assets/upgrades/multiverse.png', cost: 4237271, increase: 314, state: 'per second'},
 ]
 
 function createUpgrades() {
@@ -283,32 +283,32 @@ export const upgrades = [
 
     },
     {
-        name: 'dyson-ring',
-        cost: document.querySelector('.dyson-ring-cost'),
-        parsedCost: parseFloat(document.querySelector('.dyson-ring-cost').innerHTML),
-        increase: document.querySelector('.dyson-ring-increase'),
-        parsedIncrease: parseFloat(document.querySelector('.dyson-ring-increase').innerHTML),
-        level: document.querySelector('.dyson-ring-level'),
+        name: 'dyson-sphere',
+        cost: document.querySelector('.dyson-sphere-cost'),
+        parsedCost: parseFloat(document.querySelector('.dyson-sphere-cost').innerHTML),
+        increase: document.querySelector('.dyson-sphere-increase'),
+        parsedIncrease: parseFloat(document.querySelector('.dyson-sphere-increase').innerHTML),
+        level: document.querySelector('.dyson-sphere-level'),
         powerUps: 
         [
             {
                 name: '2x efficiency',
-                description: 'double dyson-ring output',
+                description: 'double dyson-sphere output',
                 multiplier: 2,
             },
             {
                 name: '3x efficiency',
-                description: 'triple dyson-ring output',
+                description: 'triple dyson-sphere output',
                 multiplier: 3,
             },
             {
                 name: '4x efficiency',
-                description: '4x dyson-ring output',
+                description: '4x dyson-sphere output',
                 multiplier: 4,
             },
             {
                 name: '5x efficiency',
-                description: '5x dyson-ring output',
+                description: '5x dyson-sphere output',
                 multiplier: 5,
             },
         ],
