@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap');
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background:url(./assets/space.jpg) repeat;
+    background-size: 100%;
+    background-color: darkgray;
+    user-select: none;
+    position: relative;
+    font-family: "Science Gothic", sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+.main {
+    display: flex;
+    gap: 200px; 
+}
+.left {
+    height: 200vh;
+    margin-top: 50px;
+}
+.left h3{
+    text-align:center;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.right {
+    margin-top: 200px;
+    max-height: 300px;
+    width: 550px;
+    padding: 20px 5px;
+    overflow-y: scroll;
+}
+.sidebar {
+    position: relative;
+    
+}
+.close-arrow{
+    position: absolute;
+    top: 350px;
+    left: -69px;
+    z-index: 10;
+    
+}
+.open-arrow {
+    position: fixed;
+    right:0;
+    top: 350px;
+    display: none;
+    z-index: 10;
+}
+.open-arrow img {
+    transform: rotate(180deg);
+}
+.arrow {
+    width: 64px;
+}
+.arrow:hover {
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+
+
+.ore-text {
+    font-size: 32px;
+    color:rgb(255, 196, 0);
+    font-weight: 700;
+    text-shadow: 2px 2px 3px red;
+}
+.cost-text {
+    font-size: 18px;
+}
+.asteroid-img-container {
+    position: relative;
+}
+.asteroid-img {
+    width: 400px;
+    position: relative;
+}
+
+.asteroid-img:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+}
+.asteroid-img:active {
+    transform: scale(1.02);
+}
+.healthbar {
+    background-color: green;
+    position: absolute;
+    width: 400px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 2px;
+    display: none;
+}
+#hp-text {
+    display: none;
+}
+
+.bgasteroid {
+    position: absolute;
+    z-index: -1; /* behind other content */
+    pointer-events: none; /* so clicks pass through */
+    transition: transform linear;
+}
+
+.upgrade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 330px;
+    height: 60px;
+    border: 3px solid white;
+    padding: 13px 20px;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 5px;
+    background-color: darkgray;
+    background: linear-gradient(90deg, #3F2B96 0%, #85A7FF 100%);
+}
+.mid-section h4 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.mid-section p {
+    margin: 0;
+}
+.upgrade-img {
+    width: 50px;
+}
+.ore-img {
+    width: 25px;
+}
+.cost-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.next-level-info {
+    position: absolute;
+    right: -162px;
+    background-color: rgb(90, 89, 90);
+    background: linear-gradient(90deg,rgb(141, 141, 141) 0%, rgba(90, 90, 90, 1) 100%);
+    height: 90px;
+    width: 160px;
+    text-align: center;
+    display: none;
+    font-size: 15px;
+    border-radius: 2px;
+}
+.upgrade:hover .next-level-info {
+    display: block;
+}
+
+.statistics {
+    position: absolute;
+    bottom: 0;
+    width: 450px;
+    padding: 30px;
+    border: 2px white solid;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: darkgray;
+    background: linear-gradient(90deg, #3F2B96 0%, #85A7FF 100%);
+}
+
+.texts {
+    display: flex;
+    gap: 100px;
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.util-buttons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+}
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 256px;
+    filter: invert(1);
+}
+.util-button {
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 6px;
+}
+
+.util-button img {
+   width: 32px;
+   padding: -8px -8px;
+}
+#buttonWithImg {
+    padding: 0px 8px;
+    padding-top: 5px;
+}
+.util-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.fade-up {
+    animation: fade-up 1.5s;
+}
+
+@keyframes fade-up {
+    0% {
+        transform:translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-70px);
+        opacity: 0;
+    }    
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1;} 
+}
+
+@keyframes approach {
+    0% { transform: scale(0.01); }
+    20% { transform: scale(0.1); }
+    100%   { transform: scale(1); }
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(88, 88, 88);
+}
