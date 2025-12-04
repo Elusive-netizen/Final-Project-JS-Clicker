@@ -83,13 +83,13 @@ function drillBgAsteroid(bgast, event) {
         clickSound.volume = 0.5
         clickSound.play();
     }
-    ore.innerHTML =  Math.round(parsedOre = parsedOre + opc * 2 + ops);
+    ore.innerHTML =  Math.round(parsedOre = parsedOre + opc * 2 + ops * 3);
     
     const x = event.pageX+10;
     const y = event.pageY-10;
 
     const div = document.createElement('div')
-    div.innerHTML = `+${Math.round(opc * 2 + ops)}` 
+    div.innerHTML = `+${Math.round(opc * 2 + ops * 3)}` 
     div.style.cssText = `
             color: gold; 
             position: absolute; 
