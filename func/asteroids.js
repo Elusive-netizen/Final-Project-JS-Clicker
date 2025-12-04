@@ -18,7 +18,7 @@ export let asteroid = {
     element: document.getElementById("asteroid"),
     healthbar: document.querySelector(".healthbar"),
     hpText: document.getElementById("hp-text")
-};
+}
 
 export function updateAsteroidUI() {
     asteroid.healthbar.max = asteroid.maxHp;
@@ -59,7 +59,7 @@ export function spawnAsteroid() {
 export function destroyAsteroid() {
     asteroid.prize = parseFloat((asteroid.prize * asteroid.prizeMultiplier * 1.004 ** asteroid.level).toFixed(2));
     asteroid.maxHp = parseFloat((asteroid.maxHp * asteroid.hpMultiplier * 1.004 ** asteroid.level).toFixed(2));
-    asteroid.level++
+    asteroid.level++;
     asteroid.element.style.pointerEvents = "none";
     asteroid.element.style.opacity = "0";
     asteroid.element.style.animation = "none";

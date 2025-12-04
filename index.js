@@ -1,6 +1,6 @@
-import { powerUpIntervals, upgrades } from "./func/upgrades.js";
-import { spawnAsteroid, destroyAsteroid, asteroid, updateAsteroidUI} from "./func/asteroids.js";
-export let isMuted = false;
+import { powerUpIntervals, upgrades } from "./func/upgrades.js"
+import { spawnAsteroid, destroyAsteroid, asteroid, updateAsteroidUI} from "./func/asteroids.js"
+export let isMuted = false
 
 window.onload = () => {
     spawnAsteroid();
@@ -29,21 +29,23 @@ let ops = 0;
 let asteroidCooldown = false;
 
 
-const bgm = new Audio('./assets/audio/bgm.mp3')
-bgm.volume = 0.2
+const bgm = new Audio('./assets/audio/bgm.mp3');
+bgm.volume = 0.2;
+const prizeSound = new Audio('./assets/audio/prize.mp3');
+prizeSound.volume = 0.5;
 
 function incrementOre(event) {
     if (!isMuted){
         const clickSound = new Audio('./assets/audio/click.mp3')
-        clickSound.volume = 0.5
+        clickSound.volume = 0.5;
         clickSound.play();
     }
     ore.innerHTML =  Math.round(parsedOre += opc);
 
-    const x = event.offsetX
-    const y = event.offsetY
+    const x = event.offsetX;
+    const y = event.offsetY;
 
-    const div = document.createElement('div')
+    const div = document.createElement('div');
     div.innerHTML = `+${Math.round(opc)}` 
     div.style.cssText = `
             color: white; 
@@ -54,7 +56,7 @@ function incrementOre(event) {
             pointer-events: none;
             z-index: 3;
         `
-    asteroidImgContainer.appendChild(div)
+    asteroidImgContainer.appendChild(div);
 
     div.classList.add('fade-up');
 
@@ -65,8 +67,6 @@ function incrementOre(event) {
     if (asteroid.hp <= 0 && !asteroidCooldown) {
        
         if (!isMuted) {
-            const prizeSound = new Audio('./assets/audio/prize.mp3')
-            prizeSound.volume = 0.5
             prizeSound.play();
         }
         destructionEffect();
@@ -88,8 +88,8 @@ function drillBgAsteroid(bgast, event) {
     const x = event.pageX+10;
     const y = event.pageY-10;
 
-    const div = document.createElement('div')
-    div.innerHTML = `+${Math.round(opc * 2 + ops * 3)}` 
+    const div = document.createElement('div');
+    div.innerHTML = `+${Math.round(opc * 2 + ops * 3)}`
     div.style.cssText = `
             color: gold; 
             position: absolute; 
@@ -139,16 +139,16 @@ function buyUpgrade(upgrade) {
         if (u.name === upgrade) return u;
     })
 
-    const upgradeDiv = document.getElementById(`${mu.name}-upgrade`)
-    const nextlevelDiv = document.getElementById(`${mu.name}-next-level`)
-    const nextlevelP = document.getElementById(`${mu.name}-next-p`)
+    const upgradeDiv = document.getElementById(`${mu.name}-upgrade`);
+    const nextlevelDiv = document.getElementById(`${mu.name}-next-level`);
+    const nextlevelP = document.getElementById(`${mu.name}-next-p`);
 
     if (parsedOre >= mu.parsedCost) {
        
-        const upgradeSound = new Audio('./assets/audio/upgrade.mp3')
-        upgradeSound.volume = 0.3
+        const upgradeSound = new Audio('./assets/audio/upgrade.mp3');
+        upgradeSound.volume = 0.3;
         if (!isMuted){
-        upgradeSound.play()
+        upgradeSound.play();
         }
         if(mu.name === 'drill') {
             opc += mu.parsedIncrease;
@@ -163,10 +163,10 @@ function buyUpgrade(upgrade) {
 
         if (index !== -1) {
             if (!isMuted) {
-            upgradeSound.pause()
-            const upgradeBigSound = new Audio('./assets/audio/upgradebig.mp3')
-            upgradeBigSound.volume = 0.3
-            upgradeBigSound.play()
+            upgradeSound.pause();
+            const upgradeBigSound = new Audio('./assets/audio/upgradebig.mp3');
+            upgradeBigSound.volume = 0.3;
+            upgradeBigSound.play();
             }
             upgradeDiv.style.cssText = `border-color: white`;
             nextlevelDiv.style.cssText = 'background: linear-gradient(90deg,rgb(141, 141, 141) 0%, rgba(90, 90, 90, 1) 100%); font-weight: normal';
@@ -225,9 +225,9 @@ function buyUpgrade(upgrade) {
 
     
     } else if (!isMuted) {
-        const upgradeDeny = new Audio('./assets/audio/upgradedeny.mp3')
-        upgradeDeny.volume = 0.3
-        upgradeDeny.play()
+        const upgradeDeny = new Audio('./assets/audio/upgradedeny.mp3');
+        upgradeDeny.volume = 0.3;
+        upgradeDeny.play();
     } 
 
 }
@@ -237,12 +237,12 @@ function closeUpgrades() {
     const arrow = document.querySelector(".open-arrow");
 
    if (sidebar.style.display == "none") {
-        sidebar.style.display = "block"
-        arrow.style.display = "none"
+        sidebar.style.display = "block";
+        arrow.style.display = "none";
    }
    else {
-        arrow.style.display = "block"
-        sidebar.style.display = "none"
+        arrow.style.display = "block";
+        sidebar.style.display = "none";
         
         
    }
@@ -251,18 +251,18 @@ function closeUpgrades() {
 function soundToggle() {
     const soundImg = document.getElementById("soundIcon")
     if (!isMuted){
-        soundImg.src = "./assets/no-sound.png"
+        soundImg.src = "./assets/no-sound.png";
         // bgm.pause();
         // bgm.currentTime = 0;
-        isMuted = true
+        isMuted = true;
     } else {
-        soundImg.src = "./assets/volume.png"
-        isMuted = false
+        soundImg.src = "./assets/volume.png";
+        isMuted = false;
     }
 }
 
 function save() {
-    localStorage.clear()
+    localStorage.clear();
 
     upgrades.map((upgrade) => {
         const savedObj = JSON.stringify({
@@ -273,72 +273,70 @@ function save() {
             parsedIncrease: upgrade.parsedIncrease
         })
 
-        localStorage.setItem(upgrade.name, savedObj)
+        localStorage.setItem(upgrade.name, savedObj);
 
     })
-    localStorage.setItem('opc', JSON.stringify(opc))
-    localStorage.setItem('ops', JSON.stringify(ops))
-    localStorage.setItem('ore', JSON.stringify(parsedOre))
+    localStorage.setItem('opc', JSON.stringify(opc));
+    localStorage.setItem('ops', JSON.stringify(ops));
+    localStorage.setItem('ore', JSON.stringify(parsedOre));
     
-    localStorage.setItem('savedAsteroidImage', JSON.stringify(asteroid.element.src))
-    localStorage.setItem('savedAsteroidHp', JSON.stringify(asteroid.hp))
-    localStorage.setItem('savedAsteroidMaxHp', JSON.stringify(asteroid.maxHp))
-    localStorage.setItem('savedAsteroidPrize', JSON.stringify(asteroid.prize))
-    localStorage.setItem('savedAsteroidLevel', JSON.stringify(asteroid.level))
+    localStorage.setItem('savedAsteroidImage', JSON.stringify(asteroid.element.src));
+    localStorage.setItem('savedAsteroidHp', JSON.stringify(asteroid.hp));
+    localStorage.setItem('savedAsteroidMaxHp', JSON.stringify(asteroid.maxHp));
+    localStorage.setItem('savedAsteroidPrize', JSON.stringify(asteroid.prize));
+    localStorage.setItem('savedAsteroidLevel', JSON.stringify(asteroid.level));
     if (!isMuted){
-        const saveSound = new Audio('./assets/audio/save.mp3')
-        saveSound.volume = 0.3
-        saveSound.play()
+        const saveSound = new Audio('./assets/audio/save.mp3');
+        saveSound.volume = 0.3;
+        saveSound.play();
     }
 
-    console.log(localStorage)
+    console.log(localStorage);
 }
 function load() {
     upgrades.map((upgrade) => {
-        const savedValues = JSON.parse(localStorage.getItem(upgrade.name))
+        const savedValues = JSON.parse(localStorage.getItem(upgrade.name));
 
-        upgrade.parsedCost = savedValues.parsedCost
-        upgrade.parsedIncrease = savedValues.parsedIncrease
-        upgrade.power = savedValues.power
-        upgrade.savedCost = savedValues.savedCost
+        upgrade.parsedCost = savedValues.parsedCost;
+        upgrade.parsedIncrease = savedValues.parsedIncrease;
+        upgrade.power = savedValues.power;
+        upgrade.savedCost = savedValues.savedCost;
 
-        upgrade.level.innerHTML = savedValues.parsedLevel
-        upgrade.cost.innerHTML = Math.round(upgrade.parsedCost)
-        upgrade.increase.innerHTML = upgrade.parsedIncrease
+        upgrade.level.innerHTML = savedValues.parsedLevel;
+        upgrade.cost.innerHTML = Math.round(upgrade.parsedCost);
+        upgrade.increase.innerHTML = upgrade.parsedIncrease;
         
 
-        console.log(upgrade.name, savedValues)
+        console.log(upgrade.name, savedValues);
     })
-    opc = JSON.parse(localStorage.getItem('opc'))
-    ops = JSON.parse(localStorage.getItem('ops'))
-    parsedOre = JSON.parse(localStorage.getItem('ore'))
-    ore.innerHTML = Math.round(parsedOre)
+    opc = JSON.parse(localStorage.getItem('opc'));
+    ops = JSON.parse(localStorage.getItem('ops'));
+    parsedOre = JSON.parse(localStorage.getItem('ore'));
+    ore.innerHTML = Math.round(parsedOre);
 
-    asteroid.element.src = JSON.parse(localStorage.getItem('savedAsteroidImage'))
-    asteroid.hp = JSON.parse(localStorage.getItem('savedAsteroidHp'))
-    asteroid.maxHp = JSON.parse(localStorage.getItem('savedAsteroidMaxHp'))
-    asteroid.prize = JSON.parse(localStorage.getItem('savedAsteroidPrize'))
-    asteroid.level = JSON.parse(localStorage.getItem('savedAsteroidLevel'))
+    asteroid.element.src = JSON.parse(localStorage.getItem('savedAsteroidImage'));
+    asteroid.hp = JSON.parse(localStorage.getItem('savedAsteroidHp'));
+    asteroid.maxHp = JSON.parse(localStorage.getItem('savedAsteroidMaxHp'));
+    asteroid.prize = JSON.parse(localStorage.getItem('savedAsteroidPrize'));
+    asteroid.level = JSON.parse(localStorage.getItem('savedAsteroidLevel'));
     if (!isMuted){
-        const loadSound = new Audio('./assets/audio/load.mp3')
-        loadSound.volume = 0.3
-        loadSound.play()
+        const loadSound = new Audio('./assets/audio/load.mp3');
+        loadSound.volume = 0.3;
+        loadSound.play();
     }
 
 }
 
 setInterval(() => {
-ore.innerHTML = Math.round(parsedOre)
-opcText.innerHTML = Math.round(opc)
-opsText.innerHTML = Math.round(ops)
+ore.innerHTML = Math.round(parsedOre);
+opcText.innerHTML = Math.round(opc);
+opsText.innerHTML = Math.round(ops);
 if (!asteroidCooldown) {
-    parsedOre += ops / 10
+    parsedOre += ops / 10;
     asteroid.hp -= ops / 10;
     updateAsteroidUI();
     if (asteroid.hp <= 0) {
         if (!isMuted) {
-            const prizeSound = new Audio('./assets/audio/prize.mp3')
-            prizeSound.volume = 0.5
             prizeSound.play();
         }
         destructionEffect();
@@ -353,14 +351,14 @@ if (!asteroidCooldown) {
 
 setInterval(() => {
     if (!isMuted) {
-        // bgm.play()
+        // bgm.play();
     }
 }, 1000)
 
-window.closeUpgrades = closeUpgrades
-window.incrementOre = incrementOre
-window.drillBgAsteroid = drillBgAsteroid
-window.buyUpgrade = buyUpgrade
-window.soundToggle = soundToggle
-window.save = save
-window.load = load
+window.closeUpgrades = closeUpgrades;
+window.incrementOre = incrementOre;
+window.drillBgAsteroid = drillBgAsteroid;
+window.buyUpgrade = buyUpgrade;
+window.soundToggle = soundToggle;
+window.save = save;
+window.load = load;
